@@ -7,9 +7,9 @@ import 'package:popular_people/features/popular_people/models/person.dart';
 import 'package:popular_people/features/popular_people/repositories/popular_people_repository.dart';
 
 class PopularPeopleRepositoryImpl implements PopularPeopleRepository {
-  PopularPeopleRepositoryImpl(this.dioClient);
-
   final DioClient dioClient;
+
+  PopularPeopleRepositoryImpl(this.dioClient);
 
   @override
   String get apiKey => AppConfigs.tmdbAPIKey;
@@ -17,7 +17,6 @@ class PopularPeopleRepositoryImpl implements PopularPeopleRepository {
   @override
   Future<PaginatedResponse<Person>> getPopularPeople({
     int page = 1,
-    bool forceRefresh = false,
     required TMDBImageConfigs imageConfigs,
   }) async {
     final responseData = await dioClient.get(
