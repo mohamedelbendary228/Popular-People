@@ -1,5 +1,5 @@
 import 'package:equatable/equatable.dart';
-import 'package:popular_people/core/models/tmdb_image_configs.dart';
+import 'package:popular_people/features/tmdb_configs/models/tmdb_image_configs.dart';
 
 /// Model for TMDB Configs fetched from the /configuration endpoint
 

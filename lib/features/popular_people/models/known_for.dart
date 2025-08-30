@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:intl/intl.dart';
 import 'package:popular_people/core/enums/image_size.dart';
 import 'package:popular_people/core/enums/media_type.dart';
-import 'package:popular_people/core/models/tmdb_image_configs.dart';
+import 'package:popular_people/features/tmdb_configs/models/tmdb_image_configs.dart';
 
 class KnownFor extends Equatable {
   final int id;
