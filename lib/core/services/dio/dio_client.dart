@@ -1,4 +1,4 @@
-abstract class HttpService {
+abstract class DioClient {
   String get baseUrl;
   Map<String, String> get headers;
 

@@ -2,12 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:popular_people/core/configs/app_configs.dart';
 import 'package:popular_people/core/exceptions/app_exception.dart';
 import 'package:popular_people/core/services/dio/dio_interceptors/dio_interceptor.dart';
-import 'package:popular_people/core/services/dio/http_service.dart';
+import 'package:popular_people/core/services/dio/dio_client.dart';
 
-class DioHttpService implements HttpService {
+class DioClientImpl implements DioClient {
   late final Dio dio;
 
-  DioHttpService({
+  DioClientImpl({
     Dio? dioOverride,
     bool enableCaching = true,
   }) {

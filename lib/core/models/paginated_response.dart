@@ -13,11 +13,11 @@ class PaginatedResponse<T> {
 
   factory PaginatedResponse.fromJson(
     Map<String, dynamic> json, {
-    required List<T> result,
+    required List<T> results,
   }) {
     return PaginatedResponse<T>(
       page: json['page'],
-      results: result,
+      results: results,
       totalPages: json['total_pages'] as int,
       totalResults: json['total_results'] as int,
     );
