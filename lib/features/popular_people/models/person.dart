@@ -5,13 +5,13 @@ import 'package:intl/intl.dart';
 import 'package:popular_people/core/enums/gender.dart';
 import 'package:popular_people/core/enums/image_size.dart';
 import 'package:popular_people/features/tmdb_configs/models/tmdb_image_configs.dart';
-import 'package:popular_people/features/popular_people/models/known_for.dart';
+import 'package:popular_people/features/popular_people/models/media.dart';
 
 class Person extends Equatable {
   final bool adult;
   final Gender gender;
   final int? id;
-  final List<KnownFor> knownFor;
+  final List<Media> knownFor;
   final String? knownForDepartment;
   final String name;
   final double popularity;
@@ -69,9 +69,9 @@ class Person extends Equatable {
       id: json['id'] as int?,
       knownFor: json['known_for'] == null
           ? []
-          : List<KnownFor>.from(
-              (json['known_for'] as List<dynamic>).map<KnownFor>(
-                (dynamic x) => KnownFor.fromJson(x as Map<String, dynamic>),
+          : List<Media>.from(
+              (json['known_for'] as List<dynamic>).map<Media>(
+                (dynamic x) => Media.fromJson(x as Map<String, dynamic>),
               ),
             ),
       knownForDepartment: json['known_for_department'] as String?,
@@ -112,12 +112,12 @@ class Person extends Equatable {
     };
   }
 
-  Person populateImages(TMDBImageConfigs imageConfigs) {
+  Person toPersonWithMedia(TMDBImageConfigs imageConfigs) {
     return Person(
       adult: adult,
       gender: gender,
       id: id,
-      knownFor: knownFor.map((media) => media.populateImages(imageConfigs)).toList(),
+      knownFor: knownFor.map((media) => media.toMedia(imageConfigs)).toList(),
       knownForDepartment: knownForDepartment,
       name: name,
       popularity: popularity,

@@ -6,7 +6,7 @@ import 'package:popular_people/core/enums/image_size.dart';
 import 'package:popular_people/core/enums/media_type.dart';
 import 'package:popular_people/features/tmdb_configs/models/tmdb_image_configs.dart';
 
-class KnownFor extends Equatable {
+class Media extends Equatable {
   final int id;
   final bool adult;
   final String? backdropPath;
@@ -35,7 +35,7 @@ class KnownFor extends Equatable {
   final double voteAverage;
   final int voteCount;
 
-  const KnownFor({
+  const Media({
     required this.id,
     this.adult = false,
     this.backdropPath,
@@ -54,7 +54,7 @@ class KnownFor extends Equatable {
     this.voteCount = 0,
   });
 
-  factory KnownFor.fromJson(Map<String, dynamic> json) {
+  factory Media.fromJson(Map<String, dynamic> json) {
     var mediaType = MediaType.unknown;
     try {
       mediaType = MediaType.values.byName(json['media_type'] as String);
@@ -71,7 +71,7 @@ class KnownFor extends Equatable {
       log('Error parsing releaseDate date! ${json['release_date']}');
     }
 
-    return KnownFor(
+    return Media(
       id: json['id'] as int,
       adult: (json['adult'] as bool?) ?? false,
       backdropPath: json['backdrop_path'] as String?,
@@ -114,8 +114,8 @@ class KnownFor extends Equatable {
 
   static ImageSize posterSize = ImageSize.original;
 
-  KnownFor populateImages(TMDBImageConfigs imageConfigs) {
-    return KnownFor(
+  Media toMedia(TMDBImageConfigs imageConfigs) {
+    return Media(
       id: id,
       adult: adult,
       backdropPath: backdropPath,

@@ -28,7 +28,7 @@ class PopularPeopleList extends ConsumerWidget {
           itemBuilder: (context, index) {
             final AsyncValue<Person> currentPopularPersonFromIndex = ref
                 .watch(paginatedPopularPeopleProvider(index ~/ 20))
-                .whenData((pageData) => pageData.results[index % 20]);
+                .whenData((paginatedData) => paginatedData.results[index % 20]);
             log("Index ---> ${index % 20} in Page ---> ${index ~/ 20}");
             return PopularPeopleListItem(
               personAsync: currentPopularPersonFromIndex,

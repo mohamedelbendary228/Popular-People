@@ -31,7 +31,7 @@ class PopularPeopleRepositoryImpl implements PopularPeopleRepository {
       responseData,
       results: List<Person>.from(
         (responseData['results'] as List<dynamic>).map<Person>(
-          (dynamic x) => Person.fromJson(x as Map<String, dynamic>).populateImages(imageConfigs),
+          (dynamic x) => Person.fromJson(x as Map<String, dynamic>).toPersonWithMedia(imageConfigs),
         ),
       ),
     );
