@@ -8,7 +8,6 @@ class LoadingWidget extends StatelessWidget {
     return Center(
       child: CircularProgressIndicator.adaptive(
         valueColor: AlwaysStoppedAnimation<Color>(Theme.of(context).primaryColor),
-        backgroundColor: Theme.of(context).colorScheme.secondary,
       ),
     );
   }
