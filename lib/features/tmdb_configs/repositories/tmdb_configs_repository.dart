@@ -10,5 +10,5 @@ final tmdbConfigsRepositoryProvider = Provider<TMDBConfigsRepository>((ref) {
 
 abstract class TMDBConfigsRepository {
   String get apiKey;
-  Future<TMDBConfigs> getConfigs();
+  Future<TMDBConfigs> getConfigs({bool forceRefresh = false});
 }

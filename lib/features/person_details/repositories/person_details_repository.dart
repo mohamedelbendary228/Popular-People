@@ -16,11 +16,13 @@ abstract class PersonDetailsRepository {
   Future<Person> getPersonDetails(
     int personId, {
     required TMDBImageConfigs imageConfigs,
+    bool forceRefresh = false,
   });
 
   Future<List<PersonImage>> getPersonImages(
     int personId, {
     required TMDBImageConfigs imageConfigs,
+    bool forceRefresh = false,
   });
 
   Future<void> saveNetworkImageToGallery(String imageUrl);

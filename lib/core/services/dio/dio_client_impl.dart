@@ -4,20 +4,23 @@ import 'package:popular_people/core/exceptions/app_exception.dart';
 import 'package:popular_people/core/services/cache/cache_service.dart';
 import 'package:popular_people/core/services/dio/dio_interceptors/dio_interceptor.dart';
 import 'package:popular_people/core/services/dio/dio_client.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class DioClientImpl implements DioClient {
   late final Dio dio;
 
   final CacheService cacheService;
+  final Ref ref;
 
   DioClientImpl({
     required this.cacheService,
+    required this.ref,
     Dio? dioOverride,
     bool enableCaching = true,
   }) {
     dio = dioOverride ?? Dio(baseOptions);
     if (enableCaching) {
-      dio.interceptors.add(DioInterceptor(cacheService));
+      dio.interceptors.add(DioInterceptor(cacheService, ref: ref));
     }
   }
 

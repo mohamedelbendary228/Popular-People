@@ -10,6 +10,8 @@ import 'package:popular_people/features/popular_people/providers/popular_people_
 import 'package:popular_people/features/popular_people/view/widgets/popular_people_list_item.dart';
 import 'package:popular_people/features/popular_people/view/widgets/popular_people_list_shimmer.dart';
 
+final isForceRefreshing = StateProvider<bool>((_) => false);
+
 class PopularPeopleList extends ConsumerWidget {
   const PopularPeopleList({super.key});
 
@@ -21,19 +23,24 @@ class PopularPeopleList extends ConsumerWidget {
     return popularPeopleCount.when(
       loading: () => const PopularPeopleListShimmer(),
       data: (int count) {
-        return ListView.builder(
-          controller: scrollController,
-          itemCount: count,
-          itemExtent: 110,
-          itemBuilder: (context, index) {
-            final AsyncValue<Person> currentPopularPersonFromIndex = ref
-                .watch(paginatedPopularPeopleProvider(index ~/ 20))
-                .whenData((paginatedData) => paginatedData.results[index % 20]);
-            log("Index ---> ${index % 20} in Page ---> ${index ~/ 20}");
-            return PopularPeopleListItem(
-              personAsync: currentPopularPersonFromIndex,
-            );
+        return RefreshIndicator(
+          color: Theme.of(context).primaryColor,
+          onRefresh: () async {
+            ref.read(isForceRefreshing.notifier).state = true;
           },
+          child: ListView.builder(
+            controller: scrollController,
+            itemCount: count,
+            itemExtent: 110,
+            itemBuilder: (context, index) {
+              final AsyncValue<Person> currentPopularPersonFromIndex = ref
+                  .watch(paginatedPopularPeopleProvider(index ~/ 20))
+                  .whenData((paginatedData) => paginatedData.results[index % 20]);
+              return PopularPeopleListItem(
+                personAsync: currentPopularPersonFromIndex,
+              );
+            },
+          ),
         );
       },
       error: (Object error, StackTrace? stackTrace) {

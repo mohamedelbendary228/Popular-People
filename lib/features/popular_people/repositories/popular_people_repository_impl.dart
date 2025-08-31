@@ -18,9 +18,11 @@ class PopularPeopleRepositoryImpl implements PopularPeopleRepository {
   Future<PaginatedResponse<Person>> getPopularPeople({
     int page = 1,
     required TMDBImageConfigs imageConfigs,
+    bool forceRefresh = false,
   }) async {
     final responseData = await dioClient.get(
       EndpointsConstants.popularPeople,
+      forceRefresh: forceRefresh,
       queryParameters: <String, dynamic>{
         'page': page,
         'api_key': apiKey,

@@ -12,9 +12,10 @@ class TMDBConfigsRepositoryImpl implements TMDBConfigsRepository {
   String get apiKey => AppConfigs.tmdbAPIKey;
 
   @override
-  Future<TMDBConfigs> getConfigs() async {
+  Future<TMDBConfigs> getConfigs({bool forceRefresh = false}) async {
     final response = await dioClient.get(
       EndpointsConstants.configuration,
+      forceRefresh: forceRefresh,
       queryParameters: {
         'api_key': apiKey,
       },

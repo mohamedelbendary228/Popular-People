@@ -3,14 +3,17 @@ import 'dart:developer';
 
 import 'package:clock/clock.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:popular_people/core/configs/app_configs.dart';
 import 'package:popular_people/core/models/cache_response.dart';
 import 'package:popular_people/core/services/cache/cache_service.dart';
+import 'package:popular_people/features/popular_people/view/widgets/popular_people_list.dart';
 
 class DioInterceptor extends Interceptor {
   final CacheService cacheService;
+  final Ref ref;
 
-  DioInterceptor(this.cacheService);
+  DioInterceptor(this.cacheService, {required this.ref});
 
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) {
@@ -49,6 +52,7 @@ class DioInterceptor extends Interceptor {
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
     if (options.extra[AppConfigs.dioCacheForceRefreshKey] == true) {
       log('🌍 🌍 🌍 Retrieving request from network by force refresh');
+      ref.read(isForceRefreshing.notifier).state = false;
       return handler.next(options);
     }
     final storageKey = createStorageKey(

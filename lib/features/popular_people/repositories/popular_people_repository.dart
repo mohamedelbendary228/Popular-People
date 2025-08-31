@@ -18,5 +18,6 @@ abstract class PopularPeopleRepository {
   Future<PaginatedResponse<Person>> getPopularPeople({
     int page = 1,
     required TMDBImageConfigs imageConfigs,
+    bool forceRefresh = false,
   });
 }

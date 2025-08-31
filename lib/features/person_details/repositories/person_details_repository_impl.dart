@@ -14,13 +14,11 @@ class PersonDetailsRepositoryImpl implements PersonDetailsRepository {
   String get apiKey => AppConfigs.tmdbAPIKey;
 
   @override
-  Future<Person> getPersonDetails(
-    int personId, {
-    bool forceRefresh = false,
-    required TMDBImageConfigs imageConfigs,
-  }) async {
+  Future<Person> getPersonDetails(int personId,
+      {bool forceRefresh = false, required TMDBImageConfigs imageConfigs, f}) async {
     final response = await dioClient.get(
       "/person/$personId",
+      forceRefresh: forceRefresh,
       queryParameters: <String, dynamic>{
         'api_key': apiKey,
       },
@@ -36,6 +34,7 @@ class PersonDetailsRepositoryImpl implements PersonDetailsRepository {
   }) async {
     final responseData = await dioClient.get(
       '/person/$personId/images',
+      forceRefresh: forceRefresh,
       queryParameters: <String, dynamic>{
         'api_key': apiKey,
       },

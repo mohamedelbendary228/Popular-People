@@ -5,5 +5,6 @@ abstract class DioClient {
   Future<Map<String, dynamic>> get(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
+    bool forceRefresh = false,
   });
 }

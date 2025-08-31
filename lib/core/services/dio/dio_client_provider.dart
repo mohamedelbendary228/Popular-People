@@ -5,5 +5,5 @@ import 'package:popular_people/core/services/dio/dio_client.dart';
 
 final dioClientProvider = Provider<DioClient>((ref) {
   final cacheService = ref.watch(cacheServiceProvider);
-  return DioClientImpl(cacheService: cacheService);
+  return DioClientImpl(cacheService: cacheService, ref: ref);
 });
