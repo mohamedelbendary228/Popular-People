@@ -9,7 +9,7 @@ class PersonName extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsetsDirectional.only(
-        start: 20,
+        start: 30,
         top: 20,
         bottom: 15,
       ),
