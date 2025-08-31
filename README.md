@@ -40,9 +40,9 @@ A Flutter app based on the "[The Movie DB](https://www.themoviedb.org/)" api to 
 <br/>
 
 # Demo URL
-```
+
 https://drive.google.com/file/d/1pjfHsyjlzQwKI9SnzGc0cVE1Oo3jaYnx/view?usp=sharing
-```
+
 
 
 ## Running the App
