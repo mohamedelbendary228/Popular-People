@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:popular_people/core/enums/gender.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_details_sliver_app_bar.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_name.dart';
-import 'package:popular_people/features/popular_people/models/media.dart';
+import 'package:popular_people/core/models/media.dart';
 
 class PersonDetailsPage extends StatelessWidget {
   final int personId;

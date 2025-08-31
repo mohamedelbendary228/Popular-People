@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:popular_people/core/widgets/error_widget.dart';
-import 'package:popular_people/features/popular_people/models/person.dart';
+import 'package:popular_people/core/models/person.dart';
 import 'package:popular_people/features/popular_people/providers/paginated_popular_people_provider.dart';
 import 'package:popular_people/features/popular_people/providers/popular_people_count_provider.dart';
 import 'package:popular_people/features/popular_people/providers/popular_people_list_scroll_controller.dart';

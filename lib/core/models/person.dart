@@ -5,7 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:popular_people/core/enums/gender.dart';
 import 'package:popular_people/core/enums/image_size.dart';
 import 'package:popular_people/features/tmdb_configs/models/tmdb_image_configs.dart';
-import 'package:popular_people/features/popular_people/models/media.dart';
+import 'package:popular_people/core/models/media.dart';
 
 class Person extends Equatable {
   final bool adult;

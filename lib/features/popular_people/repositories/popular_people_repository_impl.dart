@@ -3,7 +3,7 @@ import 'package:popular_people/core/constants/endpoints_constants.dart';
 import 'package:popular_people/core/models/paginated_response.dart';
 import 'package:popular_people/features/tmdb_configs/models/tmdb_image_configs.dart';
 import 'package:popular_people/core/services/dio/dio_client.dart';
-import 'package:popular_people/features/popular_people/models/person.dart';
+import 'package:popular_people/core/models/person.dart';
 import 'package:popular_people/features/popular_people/repositories/popular_people_repository.dart';
 
 class PopularPeopleRepositoryImpl implements PopularPeopleRepository {
