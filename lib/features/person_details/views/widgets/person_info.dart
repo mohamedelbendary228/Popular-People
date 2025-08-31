@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:popular_people/core/models/person.dart';
-import 'package:popular_people/core/theme/app_colors.dart';
 
 class PersonInfo extends StatelessWidget {
   final Person person;
 
   const PersonInfo({super.key, required this.person});
 
-  /// Person object
-
   @override
   Widget build(BuildContext context) {
+    final infoTextColor =
+        Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white;
     return Container(
       padding: const EdgeInsetsDirectional.only(
         start: 30,
@@ -29,7 +28,7 @@ class PersonInfo extends StatelessWidget {
                     'Known For',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: AppColors.white.withOpacity(0.5),
+                          color: infoTextColor.withOpacity(0.5),
                         ),
                   ),
                   const SizedBox(height: 10),
@@ -49,7 +48,7 @@ class PersonInfo extends StatelessWidget {
                     'Birthday',
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w700,
-                          color: AppColors.white.withOpacity(0.5),
+                          color: infoTextColor.withOpacity(0.5),
                         ),
                   ),
                   const SizedBox(height: 10),
