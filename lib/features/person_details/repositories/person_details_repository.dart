@@ -22,4 +22,6 @@ abstract class PersonDetailsRepository {
     int personId, {
     required TMDBImageConfigs imageConfigs,
   });
+
+  Future<void> saveNetworkImageToGallery(String imageUrl);
 }

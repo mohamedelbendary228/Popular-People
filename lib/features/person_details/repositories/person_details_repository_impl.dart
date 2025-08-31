@@ -1,3 +1,4 @@
+import 'package:gallery_saver_plus/gallery_saver.dart';
 import 'package:popular_people/core/configs/app_configs.dart';
 import 'package:popular_people/core/models/person.dart';
 import 'package:popular_people/core/services/dio/dio_client.dart';
@@ -45,5 +46,10 @@ class PersonDetailsRepositoryImpl implements PersonDetailsRepository {
         (dynamic x) => PersonImage.fromJson(x as Map<String, dynamic>).toPersonImages(imageConfigs),
       ),
     );
+  }
+
+  @override
+  Future<void> saveNetworkImageToGallery(String imageUrl) async {
+    await GallerySaver.saveImage(imageUrl);
   }
 }
