@@ -1,19 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:popular_people/core/configs/app_configs.dart';
 import 'package:popular_people/core/exceptions/app_exception.dart';
+import 'package:popular_people/core/services/cache/cache_service.dart';
 import 'package:popular_people/core/services/dio/dio_interceptors/dio_interceptor.dart';
 import 'package:popular_people/core/services/dio/dio_client.dart';
 
 class DioClientImpl implements DioClient {
   late final Dio dio;
 
+  final CacheService cacheService;
+
   DioClientImpl({
+    required this.cacheService,
     Dio? dioOverride,
     bool enableCaching = true,
   }) {
     dio = dioOverride ?? Dio(baseOptions);
     if (enableCaching) {
-      dio.interceptors.add(DioInterceptor());
+      dio.interceptors.add(DioInterceptor(cacheService));
     }
   }
 
@@ -35,7 +39,10 @@ class DioClientImpl implements DioClient {
   Future<Map<String, dynamic>> get(
     String endpoint, {
     Map<String, dynamic>? queryParameters,
+    bool forceRefresh = false,
   }) async {
+    dio.options.extra[AppConfigs.dioCacheForceRefreshKey] = forceRefresh;
+
     final Response<dynamic> response = await dio.get<Map<String, dynamic>>(
       endpoint,
       queryParameters: queryParameters,
