@@ -7,6 +7,7 @@ import 'package:popular_people/core/models/person.dart';
 import 'package:popular_people/core/widgets/error_widget.dart';
 import 'package:popular_people/core/widgets/loading_widget.dart';
 import 'package:popular_people/features/person_details/providers/person_details_provider.dart';
+import 'package:popular_people/features/person_details/views/widgets/person_bio.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_details_sliver_app_bar.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_images_widget.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_info.dart';
@@ -48,6 +49,8 @@ class PersonDetailsPage extends ConsumerWidget {
                     children: [
                       PersonInfo(person: person),
                       PersonImagesWidget(personId: personId),
+                      PersonBio(biography: person.biography),
+                      const SizedBox(height: 20),
                     ],
                   );
                 },
