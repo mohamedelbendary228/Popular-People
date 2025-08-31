@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popular_people/features/person_details/views/pages/person_details_page.dart';
-import 'package:popular_people/features/popular_people/view/popular_people_page.dart';
+import 'package:popular_people/features/popular_people/view/pages/popular_people_page.dart';
 import 'package:popular_people/routes/route_names.dart';
 
 mixin AppRouter {

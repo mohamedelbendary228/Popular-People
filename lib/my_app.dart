@@ -3,9 +3,10 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:popular_people/core/theme/app_theme.dart';
+import 'package:popular_people/core/theme/providers/switch_theme_provider.dart';
 import 'package:popular_people/core/widgets/error_widget.dart';
 import 'package:popular_people/core/widgets/loading_widget.dart';
-import 'package:popular_people/features/popular_people/view/popular_people_page.dart';
+import 'package:popular_people/features/popular_people/view/pages/popular_people_page.dart';
 import 'package:popular_people/features/tmdb_configs/models/tmdb_config.dart';
 import 'package:popular_people/features/tmdb_configs/providers/tmdb_configs_provider.dart';
 import 'package:popular_people/routes/app_router.dart';
@@ -16,10 +17,12 @@ class MyApp extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final configsAsync = ref.watch(tmdbConfigsProvider);
+    final themeMode = ref.watch(themeProvider); //
+
     return MaterialApp(
       title: 'Popular People',
       debugShowCheckedModeBanner: false,
-      themeMode: ThemeMode.dark,
+      themeMode: themeMode,
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
       onGenerateRoute: AppRouter.router,
