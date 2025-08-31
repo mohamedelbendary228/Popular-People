@@ -1,0 +1,42 @@
+PODS:
+  - Flutter (1.0.0)
+  - gallery_saver_plus (0.0.1):
+    - Flutter
+  - isar_flutter_libs (1.0.0):
+    - Flutter
+  - path_provider_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
+  - sqflite_darwin (0.0.4):
+    - Flutter
+    - FlutterMacOS
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - gallery_saver_plus (from `.symlinks/plugins/gallery_saver_plus/ios`)
+  - isar_flutter_libs (from `.symlinks/plugins/isar_flutter_libs/ios`)
+  - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
+  - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  gallery_saver_plus:
+    :path: ".symlinks/plugins/gallery_saver_plus/ios"
+  isar_flutter_libs:
+    :path: ".symlinks/plugins/isar_flutter_libs/ios"
+  path_provider_foundation:
+    :path: ".symlinks/plugins/path_provider_foundation/darwin"
+  sqflite_darwin:
+    :path: ".symlinks/plugins/sqflite_darwin/darwin"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  gallery_saver_plus: 61c8a831d5975e2bf57f87bcd64379dcc7d29ff2
+  isar_flutter_libs: 9fc2cfb928c539e1b76c481ba5d143d556d94920
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  sqflite_darwin: 20b2a3a3b70e43edae938624ce550a3cbf66a3d0
+
+PODFILE CHECKSUM: f393a3e970b6bcad3ccd24fdc079653b90c459b1
+
+COCOAPODS: 1.16.2
