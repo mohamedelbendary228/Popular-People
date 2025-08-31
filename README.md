@@ -14,6 +14,7 @@ A Flutter app based on the "[The Movie DB](https://www.themoviedb.org/)" api to 
  * [x] **Image Viewer** – Open selected images in full size on a separate screen with the option to save them locally.
 
  * [x] **Offline Support** – Cache data in a local database and display it when no network connection is available.
+ * [x] **Theme Switching** – Toggle between light and dark themes.
 
 
 <br/>
