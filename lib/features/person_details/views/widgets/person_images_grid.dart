@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:popular_people/features/person_details/models/person_images.dart';
+import 'package:popular_people/features/person_details/views/pages/person_image_slider_page.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_image_grid_item.dart';
 
 class PersonImagesGrid extends StatelessWidget {
@@ -27,7 +28,16 @@ class PersonImagesGrid extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           child: PersonImagesGridItem(
             images[index],
-            onTap: () {},
+            onTap: () {
+              Navigator.of(context).push<PersonImagesSliderPage>(
+                MaterialPageRoute<PersonImagesSliderPage>(
+                  builder: (context) => PersonImagesSliderPage(
+                    images: images,
+                    initialImageIndex: index,
+                  ),
+                ),
+              );
+            },
           ),
         ),
       ),
