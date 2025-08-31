@@ -1,10 +1,19 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:popular_people/core/enums/gender.dart';
+import 'package:popular_people/core/models/person.dart';
+import 'package:popular_people/core/widgets/error_widget.dart';
+import 'package:popular_people/core/widgets/loading_widget.dart';
+import 'package:popular_people/features/person_details/providers/person_details_provider.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_details_sliver_app_bar.dart';
+import 'package:popular_people/features/person_details/views/widgets/person_images_widget.dart';
+import 'package:popular_people/features/person_details/views/widgets/person_info.dart';
 import 'package:popular_people/features/person_details/views/widgets/person_name.dart';
 import 'package:popular_people/core/models/media.dart';
 
-class PersonDetailsPage extends StatelessWidget {
+class PersonDetailsPage extends ConsumerWidget {
   final int personId;
   final String personName;
   final String? personAvatar;
@@ -20,7 +29,8 @@ class PersonDetailsPage extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final personAsync = ref.watch(personDetailsProvider(personId));
     return Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -32,6 +42,22 @@ class PersonDetailsPage extends StatelessWidget {
           SliverList(
             delegate: SliverChildListDelegate([
               PersonName(personName: personName),
+              personAsync.when(
+                data: (Person person) {
+                  return Column(
+                    children: [
+                      PersonInfo(person: person),
+                      PersonImagesWidget(personId: personId),
+                    ],
+                  );
+                },
+                error: (Object error, StackTrace? stackTrace) {
+                  log('Error fetching person details');
+                  log(error.toString());
+                  return const ErrorView();
+                },
+                loading: () => const LoadingWidget(),
+              ),
             ]),
           ),
         ],
