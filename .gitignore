@@ -9,14 +9,18 @@
 .buildlog/
 .history
 .svn/
+.env
 .swiftpm/
 migrate_working_dir/
+
 
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
+.fvm/
+/config/
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
@@ -32,6 +36,10 @@ migrate_working_dir/
 .pub-cache/
 .pub/
 /build/
+/pubspec.lock
+/.metadata
+/local.properties
+/scripts_fvm/
 
 # Symbolication related
 app.*.symbols
