@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "964554081636",
+    "project_id": "popluar-people",
+    "storage_bucket": "popluar-people.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:964554081636:android:e985c65a9bc56748bbe671",
+        "android_client_info": {
+          "package_name": "com.mab.com.popular_people"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY5huU4Tc3QDu5muNabQueckyPfwVOs1E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
