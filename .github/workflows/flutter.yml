@@ -30,7 +30,7 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
       
-      - name: Build APK
+      - name: Build Flutter APK
         run: flutter build apk --release
 
       - name: Upload APK artifact to Firebase App Distribution
