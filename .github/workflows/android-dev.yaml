@@ -1,9 +1,6 @@
-name: Flutter CI
+name: Flutter - Android CI
 
 on:
-  push:
-    branches:
-      - integrate_ci_cd
   pull_request:
     branches:
       - master
