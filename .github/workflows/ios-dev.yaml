@@ -39,4 +39,12 @@ jobs:
       - name: Build IOS IPA
         run: flutter build ios --no-codesign
 
+      - name: Upload ios build artifact to Firebase App Distribution
+        uses: emertozd/Firebase-Distribution-Github-Action@v1 
+        with:
+          appId: ${{secrets.IOS_APP_ID}}
+          serviceCredentialsFileContent: ${{secrets.GOOGLE_APP_CREDENTIALS}}
+          groups: testers
+          file: build/ios/iphoneos/Runner.app  
+
 
