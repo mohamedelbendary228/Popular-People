@@ -1,9 +1,6 @@
 name: Flutter - IOS CI
 
 on:
-  push:
-    branches:
-      - integrate_ci_cd
   pull_request:
     branches:
       - master
@@ -37,7 +34,8 @@ jobs:
         run: dart format --output=none --set-exit-if-changed .
       
       - name: Build IOS IPA
-        run:  flutter build ios --release --no-codesign
+        run:  flutter build ios --release --no-codesign 
+        # need apple developer account to build signed ipa
 
       - run: mkdir Payload
         working-directory: build/ios/iphoneos    
