@@ -44,6 +44,7 @@ jobs:
           working-directory: android
 
       - name: Deploy to Firebase App Distribution via Fastlane
+        working-directory: android
         env:  
            FIREBASE_APP_ID: ${{secrets.ANDROID_APP_ID}}
            FIREBASE_CLI_TOKEN: ${{secrets.FIREBASE_CLI_TOKEN}}
