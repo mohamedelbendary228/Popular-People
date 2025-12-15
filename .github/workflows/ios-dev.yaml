@@ -47,12 +47,12 @@ jobs:
         run: zip -qq -r -9 FlutterIpaExport.ipa Payload
         working-directory: build/ios/iphoneos        
 
-      - name: Upload ios build artifact to Firebase App Distribution
-        uses: emertozd/Firebase-Distribution-Github-Action@v2
-        with:
-          appId: ${{secrets.IOS_APP_ID}}
-          serviceCredentialsFileContent: ${{secrets.GOOGLE_APP_CREDENTIALS}}
-          groups: testers
-          file: build/ios/iphoneos/FlutterIpaExport.ipa
+      # - name: Upload ios build artifact to Firebase App Distribution
+      #   uses: emertozd/Firebase-Distribution-Github-Action@v2
+      #   with:
+      #     appId: ${{secrets.IOS_APP_ID}}
+      #     serviceCredentialsFileContent: ${{secrets.GOOGLE_APP_CREDENTIALS}}
+      #     groups: testers
+      #     file: build/ios/iphoneos/FlutterIpaExport.ipa
 
 
