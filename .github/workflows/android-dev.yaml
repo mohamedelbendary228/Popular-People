@@ -2,8 +2,6 @@ name: Flutter - Android CI
 
 on:
   push:
-    branches:
-      - fastlane-integration
   pull_request:
     branches:
       - master
