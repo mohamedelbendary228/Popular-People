@@ -46,9 +46,15 @@ https://drive.google.com/file/d/1pjfHsyjlzQwKI9SnzGc0cVE1Oo3jaYnx/view?usp=shari
 
 
 ## Running the App
-An api key from TMDB is required to run the app. Then you can run the app by adding the following run arguments:
+Create a **config** folder under the project root. Inside the folder, add a file called `dev_config.json`.
 ```
---dart-define=TMDB_API_KEY=<YOUR_API_KEY>
+{
+  "TMDB_API_KEY": <YOUR_API_KEY>
+}
+```
+An api key from TMDB is required to run the app. Then you can run the app with the following command:
+```
+flutter run --release --dart-define-from-file=config/dev_config.json
 ```
 
 # Flutter version
