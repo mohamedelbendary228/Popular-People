@@ -43,6 +43,11 @@ jobs:
           bundler-cache: true
           working-directory: android
 
+      - name: Create dev_config.json
+        run: |
+          mkdir -p config
+          echo '${{ secrets.DEV_CONFIG_JSON }}' > config/dev_config.json
+
       - name: Deploy to Firebase App Distribution via Fastlane
         working-directory: android
         env:  
