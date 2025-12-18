@@ -26,7 +26,7 @@ workflows:
             --build-name=1.0.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
 
-    publish:
+    publishing:
       firebase:
         firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
         firebase_token: $FIREBASE_TOKEN
