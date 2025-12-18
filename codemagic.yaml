@@ -6,6 +6,7 @@ workflows:
     environment:
       groups:
         - secrets 
+        - firebase_credentials
       flutter: 3.24.5
       java: 17
     scripts:
@@ -27,9 +28,10 @@ workflows:
 
     publish:
       firebase:
+        firebase_service_account: $FIREBASE_SERVICE_ACCOUNT
         firebase_token: $FIREBASE_TOKEN
         android:
-          app_id: $ANDROID_APP_ID 
+          app_id: $FIREBASE_APP_ID
           groups: 
             - testers
           release_notes: "Build $BUILD_NUMBER from Codemagic"
