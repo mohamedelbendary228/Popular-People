@@ -25,6 +25,9 @@ workflows:
             --dart-define-from-file=config/dev_config.json \
             --build-name=1.0.$BUILD_NUMBER \
             --build-number=$BUILD_NUMBER
+          
+    artifacts:
+      - build/app/outputs/flutter-apk/*.apk
 
     publishing:
       firebase:
