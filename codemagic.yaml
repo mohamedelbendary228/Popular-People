@@ -34,6 +34,4 @@ workflows:
           app_id: $FIREBASE_APP_ID
           groups: 
             - testers
-          release_notes: "Build $BUILD_NUMBER from Codemagic"
-          artifact_path: build/app/outputs/flutter-apk/app-release.apk  
 
