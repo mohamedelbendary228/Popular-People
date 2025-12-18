@@ -3,3 +3,35 @@ workflows:
     name: Android Workflow
     instance_type: mac_pro
     max_build_duration: 120
+    environment:
+      groups:
+        - secrets 
+      flutter: 3.24.5
+      java: 17
+    scripts:
+      - name: Create dev_config.json
+        script: |
+          mkdir -p config
+          echo $DEV_CONFIG_BASE64 | base64 --decode > config/dev_config.json
+          echo "Config file created successfully."  
+
+      - name: Get Flutter packages
+        script: flutter pub get
+
+      - name: Build Android Release APK
+        script: |
+          flutter build apk --release \
+            --dart-define-from-file=config/dev_config.json \
+            --build-name=1.0.$BUILD_NUMBER \
+            --build-number=$BUILD_NUMBER
+
+    publish:
+      firebase:
+        firebase_token: $FIREBASE_TOKEN
+        android:
+          app_id: $ANDROID_APP_ID 
+          groups: 
+            - testers
+          release_notes: "Build $BUILD_NUMBER from Codemagic"
+          artifact_path: build/app/outputs/flutter-apk/app-release.apk  
+
