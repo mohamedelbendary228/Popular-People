@@ -7,6 +7,10 @@ workflows:
       groups:
         - secrets 
         - firebase_credentials
+      vars:
+        BUILD_NAME: "1.0.0"
+        BUILD_NUMBER: "7"
+        
       flutter: 3.24.5
       java: 17
     scripts:
@@ -23,7 +27,7 @@ workflows:
         script: |
           flutter build apk --release \
             --dart-define-from-file=config/dev_config.json \
-            --build-name=1.0.$BUILD_NUMBER \
+            --build-name=$BUILD_NAME \
             --build-number=$BUILD_NUMBER
           
     artifacts:
