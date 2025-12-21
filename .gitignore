@@ -53,7 +53,7 @@ app.*.map.json
 /android/app/release
 
 # VS Code
-.vscode/
+.vscode/settings.json
 
 .cursor/
 .fvmrc

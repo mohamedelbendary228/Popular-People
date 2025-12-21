@@ -19,7 +19,7 @@ platform :android do
   desc "Submit a new Build to firebase_distribution"
   lane :deploy_to_firebase_distribution do
     sh "cd .. && flutter clean"
-    sh "cd .. && flutter build apk --release --dart-define-from-file=config/dev_config.json"
+    sh "cd .. && flutter build apk --release --dart-define-from-file=config/prd_config_v1.json --flavor production"
     firebase_app_distribution(
         app: ENV["FIREBASE_APP_ID"], 
         firebase_cli_token: ENV["FIREBASE_CLI_TOKEN"], 

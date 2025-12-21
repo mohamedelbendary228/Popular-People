@@ -25,8 +25,9 @@ workflows:
 
       - name: Build Android Release APK
         script: |
-          flutter build apk --release \
-            --dart-define-from-file=config/dev_config.json \
+          flutter build apk --release \ 
+            --dart-define-from-file=config/prd_config_v1.json \
+            --flavor production \
             --build-name=$BUILD_NAME \
             --build-number=$BUILD_NUMBER
           
