@@ -50,7 +50,7 @@ android {
       }
       production {
         dimension "default"
-        resValue "string", "app_name", "Popular People Prod"
+        resValue "string", "app_name", "Popular People"
       }
     }
 

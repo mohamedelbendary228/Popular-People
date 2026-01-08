@@ -14,7 +14,7 @@
       ]
     },
     {
-      "name": "Prod",
+      "name": "Prod(v1)",
       "request": "launch",
       "type": "dart",
       "program": "lib/main.dart",
