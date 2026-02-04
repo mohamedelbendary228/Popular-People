@@ -17,7 +17,7 @@ workflows:
       - name: Create dev_config.json
         script: |
           mkdir -p config
-          echo $DEV_CONFIG_BASE64 | base64 --decode > config/dev_config.json
+          echo $DEV_CONFIG_BASE64 | base64 --decode > config/dev_config_v1.json
           echo "Config file created successfully."  
 
       - name: Get Flutter packages
@@ -26,8 +26,8 @@ workflows:
       - name: Build Android Release APK
         script: |
           flutter build apk --release \ 
-            --dart-define-from-file=config/prd_config_v1.json \
-            --flavor production \
+            --dart-define-from-file=config/dev_config_v1.json \
+            --flavor dev \
             --build-name=$BUILD_NAME \
             --build-number=$BUILD_NUMBER
           
