@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:popular_people/core/configs/app_configs.dart';
+import 'package:popular_people/core/configs/flavor_config.dart';
 import 'package:popular_people/core/exceptions/app_exception.dart';
 import 'package:popular_people/core/services/cache/cache_service.dart';
 import 'package:popular_people/core/services/dio/dio_interceptors/dio_interceptor.dart';
@@ -29,8 +30,10 @@ class DioClientImpl implements DioClient {
         headers: headers,
       );
 
+  FlavorValues get _flavorValues => FlavorConfig.instance.values;
+
   @override
-  String get baseUrl => AppConfigs.baseUrl;
+  String get baseUrl => _flavorValues.apiBaseUrl;
 
   @override
   Map<String, String> headers = {
