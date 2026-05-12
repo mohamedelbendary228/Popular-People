@@ -19,23 +19,27 @@ class PopularPeopleRepositoryImpl implements PopularPeopleRepository {
     int page = 1,
     required TMDBImageConfigs imageConfigs,
     bool forceRefresh = false,
+    bool isIsolate = false,
   }) async {
-    final responseData = await dioClient.get(
+    return await dioClient.get<PaginatedResponse<Person>>(
       EndpointsConstants.popularPeople,
       forceRefresh: forceRefresh,
+      isIsolate: isIsolate,
       queryParameters: <String, dynamic>{
         'page': page,
         'api_key': apiKey,
       },
-    );
+      converter: (dynamic data) {
+        final map = Map<String, dynamic>.from(data as Map<dynamic, dynamic>);
+        final results = (map['results'] as List<dynamic>)
+            .map(
+              (dynamic x) =>
+                  Person.fromJson(x as Map<String, dynamic>).toPersonWithMedia(imageConfigs),
+            )
+            .toList();
 
-    return PaginatedResponse.fromJson(
-      responseData,
-      results: List<Person>.from(
-        (responseData['results'] as List<dynamic>).map<Person>(
-          (dynamic x) => Person.fromJson(x as Map<String, dynamic>).toPersonWithMedia(imageConfigs),
-        ),
-      ),
+        return PaginatedResponse.fromJson(map, results: results);
+      },
     );
   }
 }
