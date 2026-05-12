@@ -8,6 +8,5 @@ final tmdbConfigsProvider = FutureProvider<TMDBConfigs>((ref) async {
 
   return tmdbConfigsRepository.getConfigs(
     forceRefresh: ref.watch(isForceRefreshing),
-    isIsolate: true,
   );
 });

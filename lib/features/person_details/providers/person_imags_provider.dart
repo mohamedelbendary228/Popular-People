@@ -12,6 +12,5 @@ final personImagesProvider = FutureProvider.family<List<PersonImage>, int>((ref,
     personId,
     imageConfigs: tmdbConfigs.images,
     forceRefresh: ref.watch(isForceRefreshing),
-    isIsolate: true,
   );
 });
