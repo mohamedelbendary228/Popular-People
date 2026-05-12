@@ -14,41 +14,56 @@ class PersonDetailsRepositoryImpl implements PersonDetailsRepository {
   String get apiKey => AppConfigs.tmdbAPIKey;
 
   @override
-  Future<Person> getPersonDetails(int personId,
-      {bool forceRefresh = false, required TMDBImageConfigs imageConfigs, f}) async {
-    final response = await dioClient.get(
-      "/person/$personId",
+  Future<Person> getPersonDetails(
+    int personId, {
+    required TMDBImageConfigs imageConfigs,
+    bool forceRefresh = false,
+    bool isIsolate = false,
+  }) {
+    return dioClient.get<Person>(
+      '/person/$personId',
       forceRefresh: forceRefresh,
+      isIsolate: isIsolate,
       queryParameters: <String, dynamic>{
         'api_key': apiKey,
       },
+      converter: (dynamic data) {
+        final map = Map<String, dynamic>.from(data as Map<dynamic, dynamic>);
+        return Person.fromJson(map).toPersonWithMedia(imageConfigs);
+      },
     );
-    return Person.fromJson(response).toPersonWithMedia(imageConfigs);
   }
 
   @override
   Future<List<PersonImage>> getPersonImages(
     int personId, {
-    bool forceRefresh = false,
     required TMDBImageConfigs imageConfigs,
-  }) async {
-    final responseData = await dioClient.get(
+    bool forceRefresh = false,
+    bool isIsolate = false,
+  }) {
+    return dioClient.get<List<PersonImage>>(
       '/person/$personId/images',
       forceRefresh: forceRefresh,
+      isIsolate: isIsolate,
       queryParameters: <String, dynamic>{
         'api_key': apiKey,
       },
-    );
+      converter: (dynamic data) {
+        final map = Map<String, dynamic>.from(data as Map<dynamic, dynamic>);
+        final profiles = map['profiles'] as List<dynamic>;
 
-    return List<PersonImage>.from(
-      (responseData['profiles'] as List<dynamic>).map<PersonImage>(
-        (dynamic x) => PersonImage.fromJson(x as Map<String, dynamic>).toPersonImages(imageConfigs),
-      ),
+        return profiles
+            .map(
+              (dynamic x) =>
+                  PersonImage.fromJson(x as Map<String, dynamic>).toPersonImages(imageConfigs),
+            )
+            .toList();
+      },
     );
   }
 
   @override
-  Future<void> saveNetworkImageToGallery(String imageUrl) async {
-    await GallerySaver.saveImage(imageUrl);
+  Future<void> saveNetworkImageToGallery(String imageUrl) {
+    return GallerySaver.saveImage(imageUrl);
   }
 }

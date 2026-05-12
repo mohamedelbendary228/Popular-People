@@ -10,5 +10,8 @@ final tmdbConfigsRepositoryProvider = Provider<TMDBConfigsRepository>((ref) {
 
 abstract class TMDBConfigsRepository {
   String get apiKey;
-  Future<TMDBConfigs> getConfigs({bool forceRefresh = false});
+  Future<TMDBConfigs> getConfigs({
+    bool forceRefresh = false,
+    bool isIsolate = false,
+  });
 }

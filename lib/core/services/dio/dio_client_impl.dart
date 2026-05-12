@@ -1,10 +1,14 @@
 import 'package:dio/dio.dart';
 import 'package:popular_people/core/configs/app_configs.dart';
+import 'package:popular_people/core/configs/flavor_config.dart';
 import 'package:popular_people/core/exceptions/app_exception.dart';
 import 'package:popular_people/core/services/cache/cache_service.dart';
 import 'package:popular_people/core/services/dio/dio_interceptors/dio_interceptor.dart';
 import 'package:popular_people/core/services/dio/dio_client.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:popular_people/core/services/dio/isolate_parser.dart';
+
+typedef ResponseConverter<T> = T Function(dynamic response);
 
 class DioClientImpl implements DioClient {
   late final Dio dio;
@@ -29,8 +33,10 @@ class DioClientImpl implements DioClient {
         headers: headers,
       );
 
+  FlavorValues get _flavorValues => FlavorConfig.instance.values;
+
   @override
-  String get baseUrl => AppConfigs.baseUrl;
+  String get baseUrl => _flavorValues.apiBaseUrl;
 
   @override
   Map<String, String> headers = {
@@ -39,10 +45,12 @@ class DioClientImpl implements DioClient {
   };
 
   @override
-  Future<Map<String, dynamic>> get(
+  Future<T> get<T>(
     String endpoint, {
+    required ResponseConverter<T> converter,
     Map<String, dynamic>? queryParameters,
     bool forceRefresh = false,
+    bool isIsolate = false,
   }) async {
     dio.options.extra[AppConfigs.dioCacheForceRefreshKey] = forceRefresh;
 
@@ -58,6 +66,13 @@ class DioClientImpl implements DioClient {
         message: response.statusMessage,
       );
     }
-    return response.data as Map<String, dynamic>;
+
+    if (isIsolate) {
+      return IsolateParser<T>(
+        response.data as Map<String, dynamic>,
+        converter,
+      ).parseInBackground();
+    }
+    return converter(response.data);
   }
 }
