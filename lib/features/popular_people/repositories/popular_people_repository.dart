@@ -19,5 +19,6 @@ abstract class PopularPeopleRepository {
     int page = 1,
     required TMDBImageConfigs imageConfigs,
     bool forceRefresh = false,
+    bool isIsolate = false,
   });
 }

@@ -12,14 +12,21 @@ class TMDBConfigsRepositoryImpl implements TMDBConfigsRepository {
   String get apiKey => AppConfigs.tmdbAPIKey;
 
   @override
-  Future<TMDBConfigs> getConfigs({bool forceRefresh = false}) async {
-    final response = await dioClient.get(
+  Future<TMDBConfigs> getConfigs({
+    bool forceRefresh = false,
+    bool isIsolate = false,
+  }) async {
+    return await dioClient.get<TMDBConfigs>(
       EndpointsConstants.configuration,
       forceRefresh: forceRefresh,
-      queryParameters: {
+      isIsolate: isIsolate,
+      queryParameters: <String, dynamic>{
         'api_key': apiKey,
       },
+      converter: (dynamic data) {
+        final map = Map<String, dynamic>.from(data as Map<dynamic, dynamic>);
+        return TMDBConfigs.fromJson(map);
+      },
     );
-    return TMDBConfigs.fromJson(response);
   }
 }

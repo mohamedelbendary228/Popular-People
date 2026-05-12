@@ -14,5 +14,6 @@ final paginatedPopularPeopleProvider =
     page: pageIndex + 1,
     imageConfigs: tmdbConfigs.images,
     forceRefresh: ref.watch(isForceRefreshing),
+    isIsolate: true,
   );
 });

@@ -17,12 +17,14 @@ abstract class PersonDetailsRepository {
     int personId, {
     required TMDBImageConfigs imageConfigs,
     bool forceRefresh = false,
+    bool isIsolate = false,
   });
 
   Future<List<PersonImage>> getPersonImages(
     int personId, {
     required TMDBImageConfigs imageConfigs,
     bool forceRefresh = false,
+    bool isIsolate = false,
   });
 
   Future<void> saveNetworkImageToGallery(String imageUrl);
